@@ -1,13 +1,13 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect } from 'react'
 import { Store } from './Store'
 
 
 export default function App():JSX.Element {
-  const [state, dispatch] = useContext(Store)
+  const [state, dispatch] = React.useContext(Store)
 
   useEffect(() => {
-    state.episodes === 0 && fetchDataAction()
-  })
+    state.episodes.length === 0 && fetchDataAction()
+  },[])
 
   const fetchDataAction = async () => {
     const URL = 'https://api.tvmaze.com/singlesearch/shows?q=the-office&embed=episodes'

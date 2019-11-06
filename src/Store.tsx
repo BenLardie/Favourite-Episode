@@ -6,7 +6,7 @@ interface IState {
 }
 
 interface IAction {
-    type: string
+    type: string,
     payload: any
 }
 
