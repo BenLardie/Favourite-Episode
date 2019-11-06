@@ -1,0 +1,22 @@
+import React from 'react'
+import { IEpisode } from './Interfaces'
+
+export default function EpisodeList(props: any): Array<JSX.Element> {
+    const { episodes, toggleFavAction, favourites } = props
+    return episodes.map((episode: IEpisode) => {
+        return (
+            <section key={episode.id} className='episode-box'>
+                <img src={episode.image.medium} alt={episode.name} />
+                <div>{episode.name}</div>
+                <section>
+                    <div>Season: {episode.season} Episode Number: {episode.number}</div>
+                    <button type='button' onClick={() => toggleFavAction(episode)}>{favourites.find((fav: IEpisode) => fav.id === episode.id) ?
+                        'Remove Fav'
+                        : 'Fav'}
+                    </button>
+                </section>
+            </section>
+        )
+    })
+}
+

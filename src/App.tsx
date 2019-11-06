@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import { Store} from './Store'
-import {IAction, IEpisode} from './Interfaces'
+import { Store } from './Store'
+import { IAction, IEpisode } from './Interfaces'
 
+const EpisodeList = React.lazy<any>(() => import('./EpisodeList'))
 
 export default function App(): JSX.Element {
   const { state, dispatch } = React.useContext(Store)
@@ -26,38 +27,31 @@ export default function App(): JSX.Element {
       type: 'ADD_FAV',
       payload: episode
     }
-    if (episodeInFav){
+    if (episodeInFav) {
       const favWithoutEpisode = state.favourites.filter((fav: IEpisode) => fav.id !== episode.id)
       displayObj = {
         type: 'REMOVE_FAV',
         payload: favWithoutEpisode
       }
     }
-    return dispatch(displayObj)}
-  console.log(state)
+    return dispatch(displayObj)
+  }
+  const props = {
+    episodes: state.episodes,
+    toggleFavAction,
+    favourites: state.favourites,
+  }
   return (
     <>
       <header className='header'>
         <h1>The Office</h1>
         <p>Pick your favourite episode!!</p>
       </header>
+      <React.Suspense fallback={<div>loading...</div>}>
       <section className='episode-layout'>
-        {state.episodes.map((episode: IEpisode) => {
-          return (
-            <section key={episode.id} className='episode-box'>
-              <img src={episode.image.medium} alt={episode.name} />
-              <div>{episode.name}</div>
-              <section>
-                <div>Season: {episode.season} Episode Number: {episode.number}</div>
-                <button type='button' onClick={() => toggleFavAction(episode)}>{state.favourites.find((fav: IEpisode) => fav.id === episode.id)?
-                'Remove Fav'
-                :'Fav'}
-                </button>
-              </section>
-            </section>
-          )
-        })}
+        <EpisodeList {...props} />
       </section>
+      </React.Suspense>
     </>
   )
 }
