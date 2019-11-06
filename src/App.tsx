@@ -1,27 +1,14 @@
 import React, { useEffect } from 'react'
-import { Store } from './Store'
-
-interface IEpisode {
-  airdate: string
-  airstamp: string
-  airtime: string
-  id: number
-  image: { medium: string; original: string }
-  name: string
-  number: number
-  runtime: number
-  season: number
-  summary: string
-  url: string
-}
+import { Store} from './Store'
+import {IAction, IEpisode} from './Interfaces'
 
 
-export default function App():JSX.Element {
-  const {state, dispatch} = React.useContext(Store)
+export default function App(): JSX.Element {
+  const { state, dispatch } = React.useContext(Store)
 
   useEffect(() => {
     state.episodes.length === 0 && fetchDataAction()
-  },[])
+  }, [])
 
   const fetchDataAction = async () => {
     const URL = 'https://api.tvmaze.com/singlesearch/shows?q=the-office&embed=episodes'
@@ -33,11 +20,16 @@ export default function App():JSX.Element {
     })
   }
 
+  const toggleFavAction = (episode: IEpisode): IAction => dispatch({
+    type: 'ADD_FAV',
+    payload: episode
+  })
+  console.log(state)
   return (
     <>
       <header className='header'>
-      <h1>The Office</h1>
-      <p>Pick your favourite episode!!</p>
+        <h1>The Office</h1>
+        <p>Pick your favourite episode!!</p>
       </header>
       <section className='episode-layout'>
         {state.episodes.map((episode: IEpisode) => {
@@ -46,9 +38,9 @@ export default function App():JSX.Element {
               <img src={episode.image.medium} alt={episode.name} />
               <div>{episode.name}</div>
               <section>
-                Season: {episode.season} Episode Number: {episode.number}
+                <div>Season: {episode.season} Episode Number: {episode.number}</div>
+                <button type='button' onClick={() => toggleFavAction(episode)}>Fav</button>
               </section>
-
             </section>
           )
         })}
