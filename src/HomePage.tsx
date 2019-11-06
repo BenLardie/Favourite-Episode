@@ -14,7 +14,7 @@ export default function HomePage() {
 
     const props: IEpisodeProps = {
         episodes: state.episodes,
-        store: {state, dispatch},
+        store: { state, dispatch },
         toggleFavAction,
         favourites: state.favourites,
     }

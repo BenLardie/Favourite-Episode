@@ -3,7 +3,7 @@ import { IEpisode } from './Interfaces'
 
 export default function EpisodeList(props: any): Array<JSX.Element> {
     const { episodes, toggleFavAction, favourites, store } = props
-    const {state, dispatch} = store
+    const { state, dispatch } = store
     return episodes.map((episode: IEpisode) => {
         return (
             <section key={episode.id} className='episode-box'>

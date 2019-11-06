@@ -9,7 +9,7 @@ export default function App(props: any): JSX.Element {
   return (
     <>
       <header className='header'>
-        <div>     
+        <div>
           <h1>The Office</h1>
           <p>Pick your favourite episode!!</p>
         </div>
