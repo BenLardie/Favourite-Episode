@@ -3,7 +3,7 @@ import { Store } from './Store'
 
 
 export default function App():JSX.Element {
-  const [state, dispatch] = React.useContext(Store)
+  const {state, dispatch} = React.useContext(Store)
 
   useEffect(() => {
     state.episodes.length === 0 && fetchDataAction()
