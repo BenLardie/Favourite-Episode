@@ -35,12 +35,14 @@ export default function App():JSX.Element {
 
   return (
     <>
+      <header className='header'>
       <h1>The Office</h1>
       <p>Pick your favourite episode!!</p>
-      <section>
+      </header>
+      <section className='episode-layout'>
         {state.episodes.map((episode: IEpisode) => {
           return (
-            <section key={episode.id}>
+            <section key={episode.id} className='episode-box'>
               <img src={episode.image.medium} alt={episode.name} />
               <div>{episode.name}</div>
               <section>
