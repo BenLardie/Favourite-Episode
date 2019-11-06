@@ -1,57 +1,24 @@
-import React, { useEffect } from 'react'
-import { Store } from './Store'
-import { IAction, IEpisode } from './Interfaces'
+import React from 'react'
+import { Link } from '@reach/router'
 
-const EpisodeList = React.lazy<any>(() => import('./EpisodeList'))
 
-export default function App(): JSX.Element {
-  const { state, dispatch } = React.useContext(Store)
 
-  useEffect(() => {
-    state.episodes.length === 0 && fetchDataAction()
-  }, [])
+export default function App(props: any): JSX.Element {
 
-  const fetchDataAction = async () => {
-    const URL = 'https://api.tvmaze.com/singlesearch/shows?q=the-office&embed=episodes'
-    const data = await fetch(URL)
-    const dataJSON = await data.json()
-    return dispatch({
-      type: 'FETCH_DATA',
-      payload: dataJSON._embedded.episodes
-    })
-  }
 
-  const toggleFavAction = (episode: IEpisode): IAction => {
-    const episodeInFav = state.favourites.includes(episode)
-    let displayObj = {
-      type: 'ADD_FAV',
-      payload: episode
-    }
-    if (episodeInFav) {
-      const favWithoutEpisode = state.favourites.filter((fav: IEpisode) => fav.id !== episode.id)
-      displayObj = {
-        type: 'REMOVE_FAV',
-        payload: favWithoutEpisode
-      }
-    }
-    return dispatch(displayObj)
-  }
-  const props = {
-    episodes: state.episodes,
-    toggleFavAction,
-    favourites: state.favourites,
-  }
   return (
     <>
       <header className='header'>
-        <h1>The Office</h1>
-        <p>Pick your favourite episode!!</p>
+        <div>     
+          <h1>The Office</h1>
+          <p>Pick your favourite episode!!</p>
+        </div>
+        <div>
+          <Link to='/'>Home</Link>
+          <Link to='/favs'>Favourites</Link>
+        </div>
       </header>
-      <React.Suspense fallback={<div>loading...</div>}>
-      <section className='episode-layout'>
-        <EpisodeList {...props} />
-      </section>
-      </React.Suspense>
+      {props.children}
     </>
   )
 }
