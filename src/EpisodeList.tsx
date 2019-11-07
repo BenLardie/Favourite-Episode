@@ -11,6 +11,7 @@ export default function EpisodeList(props: any): Array<JSX.Element> {
                 <div>{episode.name}</div>
                 <section>
                     <div>Season: {episode.season} Episode Number: {episode.number}</div>
+                    <div className='details'>{episode.summary.replace('<p>', '').replace('</p>', '')}</div>
                     <button type='button' onClick={() => toggleFavAction(state, dispatch, episode)}>{favourites.find((fav: IEpisode) => fav.id === episode.id) ?
                         'Remove Fav'
                         : 'Fav'}

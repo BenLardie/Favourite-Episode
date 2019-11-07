@@ -37,3 +37,11 @@ code {
   top: 0;
   
 }
+
+.details {
+  visibility: hidden;
+}
+
+.episode-box:hover .details {
+  visibility: visible;
+}
