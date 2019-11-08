@@ -7,8 +7,8 @@ export default function EpisodeList(props: any): Array<JSX.Element> {
     return episodes.map((episode: IEpisode) => {
         return (
             <section key={episode.id} className='episode-box'>
-                <img src={episode.image.medium} alt={episode.name} />
-                <div>{episode.name}</div>
+                <img src={episode.image.original} alt={episode.name} className='card-image' />
+                <h1 className='card-header'>{episode.name}</h1>
                 <section>
                     <div>Season: {episode.season} Episode Number: {episode.number}</div>
                     <div className='details'>{episode.summary.replace('<p>', '').replace('</p>', '')}</div>
