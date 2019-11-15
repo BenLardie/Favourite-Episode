@@ -62,44 +62,28 @@ a {
   position: relative;
 }
 
-.fav {
-  color: red;
-  visibility: hidden;
+.heart {
+  width: 100px;
+  height: 100px;
+  background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+  cursor: pointer;
+  transition: background-position 1s steps(28);
   position: absolute;
-  right: 20px;
-  justify-content: center;
-  display: block;
-  margin: 0 auto;
   z-index: 1;
-  font-size: 15em;
-  background: #000000ad;
-  top: 15%;
-  right: 20%;
+  top: -9%;
+  right: 0.2px;
   padding: 5px 60px;
+  border: none;
+
+  
+  &.is-active {
+    transition-duration: 1s;
+    background-position: -2800px 0;
+  }
 }
 
-.not-fav{
-  color: white;
-  visibility: hidden;
-  position: absolute;
-  right: 20px;
-  justify-content: center;
-  display: block;
-  margin: 0 auto;
-  z-index: 1;
-  font-size: 15em;
-  background: #000000ad;
-  top: 15%;
-  right: 20%;
-  padding: 5px 60px;
-}
-
-.episode-box:hover .fav {
-  visibility: visible;
-}
-
-.episode-box:hover .not-fav {
-  visibility: visible;
+.heart:focus {
+  outline: none;
 }
 
 .card-image {

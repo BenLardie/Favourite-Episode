@@ -12,9 +12,9 @@ export default function EpisodeList(props: any): Array<JSX.Element> {
                 <button type='button' 
                     onClick={() => toggleFavAction(state, dispatch, episode)}
                     className={favourites.find((fav: IEpisode) => fav.id === episode.id) ?
-                        'fav'
-                        : 'not-fav'}
-                    >❤
+                        'heart is-active'
+                        : 'heart'}
+                    >
                 </button>
                 <section className='text'>
                     <div>Season: {episode.season} Episode Number: {episode.number}</div>
