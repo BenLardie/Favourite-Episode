@@ -9,13 +9,16 @@ export default function EpisodeList(props: any): Array<JSX.Element> {
             <section key={episode.id} className='episode-box'>
                 <img src={episode.image.original} alt={episode.name} className='card-image' />
                 <h1 className='card-header'>{episode.name}</h1>
+                <button type='button' 
+                    onClick={() => toggleFavAction(state, dispatch, episode)}
+                    className={favourites.find((fav: IEpisode) => fav.id === episode.id) ?
+                        'fav'
+                        : 'not-fav'}
+                    >❤
+                </button>
                 <section className='text'>
                     <div>Season: {episode.season} Episode Number: {episode.number}</div>
                     <div className='details'>{episode.summary.replace('<p>', '').replace('</p>', '')}</div>
-                    <button type='button' onClick={() => toggleFavAction(state, dispatch, episode)}>{favourites.find((fav: IEpisode) => fav.id === episode.id) ?
-                        'Remove Fav'
-                        : 'Fav'}
-                    </button>
                 </section>
             </section>
         )

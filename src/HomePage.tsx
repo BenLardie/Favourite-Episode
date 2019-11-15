@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Store } from './Store'
-import { IAction, IEpisode, IEpisodeProps } from './Interfaces'
+import { IEpisodeProps } from './Interfaces'
 import { fetchDataAction, toggleFavAction } from './Actions'
 
 const EpisodeList = React.lazy<any>(() => import('./EpisodeList'))
