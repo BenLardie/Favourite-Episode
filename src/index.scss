@@ -58,11 +58,18 @@ a {
   max-width: 400px;
   background: black;
   color: white;
-  text-align: center;
+  border: 2px solid white;
+  padding-bottom: 3rem;
+  margin: 5px;
+}
+
+.title-box {
   position: relative;
+  padding: 10px;
 }
 
 .heart {
+  text-align: right;
   width: 100px;
   height: 100px;
   background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
@@ -70,11 +77,10 @@ a {
   transition: background-position 1s steps(28);
   position: absolute;
   z-index: 1;
-  top: -9%;
+  top: -35%;
   right: 0.2px;
-  padding: 5px 60px;
   border: none;
-
+  display: inline;
   
   &.is-active {
     transition-duration: 1s;
@@ -89,28 +95,29 @@ a {
 .card-image {
   width: 100%;
   height: 75%;
+  border-radius: 30%;
 }
 
 .card-header {
-  position: absolute;
+  // position: absolute;
   font-family: 'Space Mono', monospace;
-  top: 5px;
+  // top: 5px;
   font-size: 2.5em;
   margin: 0;
   background: #000000a1;
   width: 100%;
+  text-align: left;
 }
 
 .text {
   padding: 5px;
+  text-align: center;
+  font-size: 2em;
 }
 
 .details {
-  visibility: hidden;
   display: inline-block;
   padding: 5px;
+  font-size: 0.7em;
 }
 
-.episode-box:hover .details {
-  visibility: visible;
-}

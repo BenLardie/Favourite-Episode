@@ -7,7 +7,7 @@ export default function EpisodeList(props: any): Array<JSX.Element> {
     return episodes.map((episode: IEpisode) => {
         return (
             <section key={episode.id} className='episode-box'>
-                <img src={episode.image.original} alt={episode.name} className='card-image' />
+                <div className='title-box'>
                 <h1 className='card-header'>{episode.name}</h1>
                 <button type='button' 
                     onClick={() => toggleFavAction(state, dispatch, episode)}
@@ -16,6 +16,8 @@ export default function EpisodeList(props: any): Array<JSX.Element> {
                         : 'heart'}
                     >
                 </button>
+                </div>
+                <img src={episode.image.original} alt={episode.name} className='card-image' />
                 <section className='text'>
                     <div>Season: {episode.season} Episode Number: {episode.number}</div>
                     <div className='details'>{episode.summary.replace('<p>', '').replace('</p>', '')}</div>
